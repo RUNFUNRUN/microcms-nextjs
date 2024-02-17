@@ -11,13 +11,19 @@ export default async function Home({ params }: { params: { slug: string } }) {
   return (
     <main>
       <h1>{post.title}</h1>
-      <p>{publishedAtString}</p>
+      <div>
+        <p>投稿日</p>
+        <p>{publishedAtString}</p>
+      </div>
       <div
         dangerouslySetInnerHTML={{
           __html: `${post.content}`,
         }}
       />
-      <p>{revisedAtString}</p>
+      <div>
+        <p>最終更新日</p>
+        <p>{revisedAtString}</p>
+      </div>
     </main>
   );
 }
