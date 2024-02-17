@@ -3,18 +3,21 @@ import { client } from '@/lib/microcms';
 
 export default async function Home({ params }: { params: { slug: string } }) {
   const post: Content = await client.get({ endpoint: 'blog', contentId: params.slug });
-  console.log(post);
+  const publishedAt = new Date(post.publishedAt);
+  const publishedAtString = `${publishedAt.getFullYear()}年${publishedAt.getMonth() + 1}月${publishedAt.getDate()}日`;
+  const revisedAt = new Date(post.revisedAt);
+  const revisedAtString = `${revisedAt.getFullYear()}年${revisedAt.getMonth() + 1}月${revisedAt.getDate()}日`;
 
   return (
     <main>
       <h1>{post.title}</h1>
-      <p>{post.publishedAt}</p>
+      <p>{publishedAtString}</p>
       <div
         dangerouslySetInnerHTML={{
           __html: `${post.content}`,
         }}
       />
-      <p>{post.revisedAt}</p>
+      <p>{revisedAtString}</p>
     </main>
   );
 }

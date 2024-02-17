@@ -8,8 +8,7 @@ export type Content = {
   // my fields
   title: string;
   description?: string;
-  eyecatch?: string;
   content: string;
 };
 
-export type PostList = Pick<Content, 'id' | 'publishedAt' | 'title' | 'description' | 'eyecatch'>[];
+export type PostList = Pick<Content, 'id' | 'publishedAt' | 'title' | 'description'>[];

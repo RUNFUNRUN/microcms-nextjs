@@ -6,7 +6,7 @@ export default async function Home() {
   const posts: PostList = await client.getAllContents({
     endpoint: 'blog',
     queries: {
-      fields: ['id', 'publishedAt', 'title', 'description', 'eyecatch'],
+      fields: ['id', 'publishedAt', 'title', 'description'],
     },
   });
   console.log(posts);
