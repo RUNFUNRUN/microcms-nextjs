@@ -1,3 +1,4 @@
+import { Toc } from '@/app/_components/Toc';
 import { Content } from '@/app/types';
 import { client } from '@/lib/microcms';
 
@@ -14,6 +15,10 @@ export default async function Home({ params }: { params: { slug: string } }) {
       <div>
         <p>投稿日</p>
         <p>{publishedAtString}</p>
+      </div>
+      <div>
+        <p>目次</p>
+        <Toc content={post.content} />
       </div>
       <div
         dangerouslySetInnerHTML={{

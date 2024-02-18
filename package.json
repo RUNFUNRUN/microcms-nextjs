@@ -10,6 +10,7 @@
     "lint:fix": "next lint --fix"
   },
   "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
     "microcms-js-sdk": "^2.7.0",
     "next": "14.0.3",
     "react": "^18",
