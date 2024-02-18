@@ -12,11 +12,19 @@ export default function Home() {
   const [displayQuery, setDisplayQuery] = useState<string | undefined>(q ?? undefined);
   const [posts, setPosts] = useState<Content[]>([]);
 
+  const search = async (query: string): Promise<Content[]> => {
+    const result = await fetch(`/api/search?q=${query}`);
+    const data = await result.json();
+    return data;
+  };
+
   useEffect(() => {
     if (q === undefined) {
       return;
     }
-    handleSearch();
+    search(query).then((posts) => {
+      setPosts(posts);
+    });
     // eslint-disable-next-line
   }, []);
 
@@ -25,10 +33,9 @@ export default function Home() {
       setDisplayQuery(undefined);
       return;
     }
-    const result = await fetch(`/api/search?q=${query}`);
-    const data = await result.json();
+    const posts = await search(query);
     setDisplayQuery(query);
-    setPosts(data);
+    setPosts(posts);
   };
 
   return (

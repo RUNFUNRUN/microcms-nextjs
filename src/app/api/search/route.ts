@@ -1,6 +1,5 @@
 import { Content } from '@/app/types';
 import { client } from '@/lib/microcms';
-import { MicroCMSListResponse } from 'microcms-js-sdk';
 import { NextRequest, NextResponse } from 'next/server';
 
 export const GET = async (req: NextRequest) => {
