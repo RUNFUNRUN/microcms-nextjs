@@ -17,7 +17,6 @@ export default async function Home({ params }: { params: { slug: string } }) {
     $(elm).html(result.value);
     $(elm).addClass('hljs');
   });
-  console.log($.html());
 
   return (
     <main>

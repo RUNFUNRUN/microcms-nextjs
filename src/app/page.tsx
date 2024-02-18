@@ -10,7 +10,6 @@ export default async function Home() {
       fields: ['id', 'title', 'description', 'publishedAt'],
     },
   });
-  console.log(posts);
 
   return (
     <main>
