@@ -1,7 +1,6 @@
 import { client } from '@/lib/microcms';
 import Link from 'next/link';
 import { PostList } from './types';
-import { SearchBox } from './_components/SearchBox';
 
 export default async function Home() {
   const posts: PostList = await client.getAllContents({
@@ -15,7 +14,7 @@ export default async function Home() {
     <main>
       <div className="w-[960px] mx-auto">
         <h2>記事一覧</h2>
-        <ul>
+        <ul className="blog-list">
           {posts.map((post) => {
             const publishedAt = new Date(post.publishedAt);
             const publishedAtString = `${publishedAt.getFullYear()}年${publishedAt.getMonth() + 1}月${publishedAt.getDate()}日`;
