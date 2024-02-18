@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { Toc } from '@/app/_components/Toc';
 import { parseToc } from '@/app/_utils/parseToc';
 import { Content } from '@/app/types';
@@ -51,7 +52,21 @@ export default async function Home({ params }: { params: { slug: string } }) {
   );
 }
 
-export async function generateStaticParams() {
+export const generateStaticParams = async () => {
   const ids = await client.getAllContentIds({ endpoint: 'blog' });
   return ids.map((id) => ({ params: { id } }));
-}
+};
+
+export const generateMetadata = async ({ params }: { params: { slug: string } }) => {
+  const page: Pick<Content, 'title' | 'description'> = await client.get({
+    endpoint: 'blog',
+    contentId: params.slug,
+    queries: { fields: ['title', 'description'] },
+  });
+  console.log(page);
+
+  return {
+    title: page.title,
+    description: page.description,
+  } satisfies Metadata;
+};
