@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Content } from '../types';
 import Link from 'next/link';
@@ -11,6 +11,15 @@ export default function Home() {
   const [query, setQuery] = useState(q ?? '');
   const [displayQuery, setDisplayQuery] = useState<string | undefined>(q ?? undefined);
   const [posts, setPosts] = useState<Content[]>([]);
+
+  useEffect(() => {
+    if (q === undefined) {
+      return;
+    }
+    handleSearch();
+    // eslint-disable-next-line
+  }, []);
+
   const handleSearch = async () => {
     if (query === '') {
       setDisplayQuery(undefined);
