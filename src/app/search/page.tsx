@@ -7,30 +7,39 @@ import Link from 'next/link';
 
 export default function Home() {
   const searchParams = useSearchParams();
-  const q = searchParams.get('q') as string | undefined;
+  const q = searchParams.get('q') as string;
   const [query, setQuery] = useState(q ?? '');
   const [displayQuery, setDisplayQuery] = useState<string | undefined>(q ?? undefined);
   const [posts, setPosts] = useState<Content[]>([]);
 
   const search = async (query: string): Promise<Content[]> => {
     const result = await fetch(`/api/search?q=${query}`);
+    if (result.status !== 200) {
+      return [];
+    }
     const data = await result.json();
     return data;
   };
 
   useEffect(() => {
-    if (q === undefined) {
+    if (!q) {
       return;
     }
     search(query).then((posts) => {
       setPosts(posts);
     });
+    return () => {
+      setQuery('');
+      setDisplayQuery(undefined);
+      setPosts([]);
+    };
     // eslint-disable-next-line
   }, []);
 
   const handleSearch = async () => {
-    if (query === '') {
+    if (query.trim() === '') {
       setDisplayQuery(undefined);
+      setPosts([]);
       return;
     }
     const posts = await search(query);
@@ -48,8 +57,8 @@ export default function Home() {
             setQuery(e.target.value);
           }}
         />
+        <button onClick={handleSearch}>検索</button>
       </div>
-      <button onClick={handleSearch}>検索</button>
       <div>
         {displayQuery && <p>{displayQuery}が含まれている記事</p>}
         <ul>

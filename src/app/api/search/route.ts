@@ -13,5 +13,8 @@ export const GET = async (req: NextRequest) => {
     endpoint: 'blog',
     queries: { q: query },
   });
+  if (result.length === 0) {
+    return NextResponse.json({ error: 'Not found' }, { status: 404 });
+  }
   return NextResponse.json(result);
 };
