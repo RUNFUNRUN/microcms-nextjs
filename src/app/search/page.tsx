@@ -8,8 +8,8 @@ import Link from 'next/link';
 export default function Home() {
   const searchParams = useSearchParams();
   const q = searchParams.get('q') as string;
-  const [query, setQuery] = useState(q ?? '');
-  const [displayQuery, setDisplayQuery] = useState<string | undefined>(q ?? undefined);
+  const [query, setQuery] = useState('');
+  const [displayQuery, setDisplayQuery] = useState<string | undefined>(undefined);
   const [posts, setPosts] = useState<Content[]>([]);
 
   const search = async (query: string): Promise<Content[]> => {
@@ -25,6 +25,8 @@ export default function Home() {
     if (!q) {
       return;
     }
+    setDisplayQuery(q);
+    setQuery(q);
     search(query).then((posts) => {
       setPosts(posts);
     });

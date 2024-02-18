@@ -15,7 +15,7 @@ export const SearchBox = () => {
   };
 
   return (
-    <div className="flex gap-2 m-2">
+    <div className="flex gap-2">
       <input
         type="text"
         name="query"

@@ -12,7 +12,53 @@ body {
 }
 
 .blog-content {
+  @apply text-xl my-1;
+
   h1 {
-    @apply text-4xl font-bold;
+    @apply text-4xl font-bold mt-4 mb-2;
+  }
+
+  h2 {
+    @apply text-3xl font-bold mt-3 mb-1;
+  }
+
+  h3 {
+    @apply text-3xl font-bold mt-3 mb-1;
+  }
+
+  h4 {
+    @apply text-3xl font-bold mt-3 mb-1;
+  }
+
+  h5 {
+    @apply text-3xl font-bold mt-3 mb-1;
+  }
+
+  a {
+    @apply text-blue-600 underline hover:text-blue-300;
+  }
+
+  p {
+    @apply my-1;
+  }
+
+  pre {
+    @apply my-5;
+  }
+
+  code {
+    @apply text-lg;
+  }
+
+  table {
+    @apply my-5;
+  }
+
+  th {
+    @apply border border-black px-2;
+  }
+
+  td {
+    @apply border border-black px-2;
   }
 }
