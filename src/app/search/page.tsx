@@ -9,10 +9,11 @@ export default function Home() {
   const searchParams = useSearchParams();
   const q = searchParams.get('q') as string | undefined;
   const [query, setQuery] = useState(q ?? '');
-  const [displayQuery, setDisplayQuery] = useState(q ?? '');
+  const [displayQuery, setDisplayQuery] = useState<string | undefined>(q ?? undefined);
   const [posts, setPosts] = useState<Content[]>([]);
   const handleSearch = async () => {
     if (query === '') {
+      setDisplayQuery(undefined);
       return;
     }
     const result = await fetch(`/api/search?q=${query}`);
