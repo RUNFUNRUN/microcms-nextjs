@@ -29,6 +29,7 @@ export default async function Home({ params }: { params: { slug: string } }) {
         <Toc content={post.content} />
       </div>
       <div
+        className="blog-content"
         dangerouslySetInnerHTML={{
           __html: `${$.html()}`,
         }}

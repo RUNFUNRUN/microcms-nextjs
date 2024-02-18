@@ -13,9 +13,7 @@ export default async function Home() {
 
   return (
     <main>
-      <h1>Blog</h1>
-      <SearchBox />
-      <div>
+      <div className="w-[960px] mx-auto">
         <h2>記事一覧</h2>
         <ul>
           {posts.map((post) => {

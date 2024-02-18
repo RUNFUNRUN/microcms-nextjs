@@ -15,7 +15,7 @@ export const SearchBox = () => {
   };
 
   return (
-    <div>
+    <div className="flex gap-2 m-2">
       <input
         type="text"
         name="query"
@@ -23,8 +23,11 @@ export const SearchBox = () => {
         onChange={(e) => {
           setQuery(e.target.value);
         }}
+        className="border-2 border-black pr-2"
       />
-      <button onClick={handleClick}>検索</button>
+      <button onClick={handleClick} className="border-2 border-black bg-gray-200 px-2 py-1">
+        検索
+      </button>
     </div>
   );
 };

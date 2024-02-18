@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import './globals.css';
-
-const inter = Inter({ subsets: ['latin'] });
+import { Container } from './_components/Container';
 
 export const metadata: Metadata = {
   title: 'microCMS+Next.js Blog',
@@ -12,7 +10,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ja">
-      <body className={`${inter.className} min-h-screen`}>{children}</body>
+      <body className="flex flex-col min-h-screen">
+        <Container>{children}</Container>
+        <footer className="mt-auto mb-2 text-center">
+          <p>© runfunrun</p>
+        </footer>
+      </body>
     </html>
   );
 }
