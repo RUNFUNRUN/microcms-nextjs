@@ -15,6 +15,7 @@ export const Toc = ({ content }: { content: string }) => {
 
   return (
     <div>
+      <h2>{tocData.length > 0 ? '目次' : ''}</h2>
       <ul>{renderTocItems(tocData)}</ul>
     </div>
   );

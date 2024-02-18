@@ -17,7 +17,6 @@ export default async function Home({ params }: { params: { slug: string } }) {
         <p>{publishedAtString}</p>
       </div>
       <div>
-        <p>目次</p>
         <Toc content={post.content} />
       </div>
       <div
