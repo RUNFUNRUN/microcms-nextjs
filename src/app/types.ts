@@ -7,7 +7,7 @@ export type Content = {
   revisedAt: Date;
   // my fields
   title: string;
-  description?: string;
+  description: string;
   content: string;
 };
 

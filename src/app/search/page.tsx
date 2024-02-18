@@ -8,11 +8,16 @@ import Link from 'next/link';
 export default function Home() {
   const searchParams = useSearchParams();
   const q = searchParams.get('q') as string | undefined;
-  const [query, setQuery] = useState(q || '');
+  const [query, setQuery] = useState(q ?? '');
+  const [displayQuery, setDisplayQuery] = useState(q ?? '');
   const [posts, setPosts] = useState<Content[]>([]);
   const handleSearch = async () => {
+    if (query === '') {
+      return;
+    }
     const result = await fetch(`/api/search?q=${query}`);
     const data = await result.json();
+    setDisplayQuery(query);
     setPosts(data);
   };
 
@@ -20,7 +25,6 @@ export default function Home() {
     <main>
       <div>
         <input
-          type="text"
           name="query"
           value={query}
           onChange={(e) => {
@@ -30,7 +34,7 @@ export default function Home() {
       </div>
       <button onClick={handleSearch}>検索</button>
       <div>
-        {query && <p>{query}が含まれている記事</p>}
+        {displayQuery && <p>{displayQuery}が含まれている記事</p>}
         <ul>
           {posts.map((post) => {
             const publishedAt = new Date(post.publishedAt);

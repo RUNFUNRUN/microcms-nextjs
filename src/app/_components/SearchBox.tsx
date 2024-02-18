@@ -1,16 +1,17 @@
 'use client';
 
 import { useState } from 'react';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 export const SearchBox = () => {
+  const router = useRouter();
   const [query, setQuery] = useState('');
 
   const handleClick = () => {
     if (query === '') {
-      redirect('/search');
+      router.push('/search');
     }
-    redirect(`/search?q=${query}`);
+    router.push(`/search?q=${query}`);
   };
 
   return (
